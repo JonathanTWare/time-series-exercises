@@ -53,7 +53,7 @@ def wrangle_tsa():
 
 #----------------------------------------------wine----------------------------------------------
 
-def new_wine_data():
+def new_opsd_data():
     if os.path.isfile('wine.csv'):
             df = pd.read_csv('wine.csv', index_col = 0)
             
@@ -67,7 +67,7 @@ def new_wine_data():
     
 
 
-def prep_wine_data(df):
+def prep_opsd_data(df):
     
     df.index = pd.to_datetime(df.index)
     df['month'] = df.index.month
@@ -77,8 +77,8 @@ def prep_wine_data(df):
     
     return df
 
-def wrangle_wine():
+def wrangle_opsd():
   
-    df = new_wine_data()
-    df = prep_wine_data(df)
+    df = new_opsd_data()
+    df = prep_opsd_data(df)
     return df
