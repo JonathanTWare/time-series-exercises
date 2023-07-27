@@ -1,10 +1,18 @@
 import pandas as pd
 import requests
+import os
 
 
-def read_csv(file_path):
+def new_wine_data():
+    if os.path.isfile('wine.csv'):
+            df = pd.read_csv('wine.csv', index_col = 0)
+            
     
-    df = pd.read_csv(file_path)
+    else:
+    
+            df = pd.read_csv("https://raw.githubusercontent.com/jenfly/opsd/master/opsd_germany_daily.csv")
+            df.to_csv('wine.csv')
+            
     return df
 
 def get_swapi_data(url):
