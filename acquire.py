@@ -30,7 +30,9 @@ def combine_api_data():
     df2 = get_swapi_data('https://swapi.dev/api/planets/')
     df3 = get_swapi_data('https://swapi.dev/api/starships/')
     
-    combined_df = pd.concat([df1, df2, df3],ignore_index=True)
+    ppl_planet_df = pd.merge(df1, df2, left_on='homeworld', right_on='url', how='left', suffixes=['_people', '_planets'])
+
+    ppl_planet_df['starships'] = [', '.join(map(str, l)) for l in ppl_planet_df['starships']]
     
-    return combined_df
+    return ppl_planet_df
     
